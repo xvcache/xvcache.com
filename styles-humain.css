@@ -76,3 +76,11 @@ footer a { color: var(--ink-soft); }
   .brand { flex-direction: column; gap: 0.7rem; }
   .demo-row { flex-direction: column; align-items: flex-start; }
 }
+
+.compare-wrap { overflow-x: auto; margin: 0.9rem 0 1rem; }
+.compare { width: 100%; border-collapse: collapse; font-size: 0.88rem; line-height: 1.4; }
+.compare th, .compare td { text-align: left; vertical-align: top; padding: 0.5rem 0.75rem 0.5rem 0; border-bottom: 1px solid var(--rule); }
+.compare th { color: var(--ink-soft); font-weight: 600; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.compare caption { caption-side: top; text-align: left; color: var(--ink-soft); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.5rem; }
+.compare td a { color: var(--ink); }
+.frank { color: var(--ink-soft); font-size: 0.95rem; }

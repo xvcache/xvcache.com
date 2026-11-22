@@ -18,6 +18,7 @@
         <a href="#probleme">Le problème</a>
         <a href="#fonctionnement">Fonctionnement</a>
         <a href="#pour-qui">Pour qui</a>
+        <a href="#comparaison">Pourquoi XVcache</a>
         <a href="#livre-blanc">Livre blanc</a>
         <a href="#demo">Démo</a>
         <a class="switch" href="index.html">Agent IA ?</a>
@@ -68,6 +69,62 @@
         <li><strong>Médecins</strong> — le secret des informations de santé doit pouvoir être préservé, y compris lorsqu’une note de travail est vérifiée.</li>
         <li><strong>Consultants</strong> liés par une confidentialité contractuelle — le même geste, sans confondre cette confidentialité avec le secret professionnel des professions réglementées.</li>
       </ul>
+    </section>
+    <section id="comparaison">
+      <h2>Pourquoi XVcache</h2>
+      <p>La plupart des serveurs MCP pour Obsidian servent à lire et écrire le coffre. XVcache le fait aussi, mais son métier est plus étroit&nbsp;: laisser une preuve que la note est intacte (<strong>V</strong>) ou qu’elle a été changée hors de l’outil (<strong>X</strong>), sans mettre le texte dans le journal. Il peut s’ajouter à un serveur plus complet, pas le remplacer.</p>
+      <div class="compare-wrap">
+        <table class="compare">
+          <caption>Relevé du 22 novembre 2026. Étoiles&nbsp;: API GitHub.</caption>
+          <thead>
+            <tr>
+              <th>Serveur</th>
+              <th>Lecture / écriture</th>
+              <th>Détection d’altération</th>
+              <th>Journal d’audit chaîné</th>
+              <th>Contenu hors du journal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>XVcache</strong></td>
+              <td>Oui</td>
+              <td>Oui&nbsp;: verdict <strong>V</strong> / <strong>X</strong> en comparant le fichier à la dernière empreinte</td>
+              <td>Oui, lectures et écritures (JSONL, sha256)</td>
+              <td>Oui</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/cyanheads/obsidian-mcp-server">obsidian-mcp-server</a> (716&nbsp;étoiles)</td>
+              <td>Oui, surface riche (14 outils)</td>
+              <td>Non documentée</td>
+              <td>Non documenté</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/StevenStavrakis/obsidian-mcp">obsidian-mcp</a> (752&nbsp;étoiles)</td>
+              <td>Oui, fichiers locaux</td>
+              <td>Journal de transactions pour reprise, pas un verdict V/X</td>
+              <td>Instantanés de reprise, pas une chaîne de hachage</td>
+              <td>Non&nbsp;: les instantanés conservent le texte</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/dewtech-technologies/obsidian-mcp-secure">obsidian-mcp-secure</a></td>
+              <td>Oui</td>
+              <td>Non documentée</td>
+              <td>Journal d’audit rotatif, non décrit comme chaîné</td>
+              <td>Non&nbsp;: le contenu précédent va dans le journal (README)</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/The-40-Thieves/reliquary-tc">Reliquary-TC</a> (13&nbsp;étoiles)</td>
+              <td>Oui, surface gouvernée</td>
+              <td>Vérifie la chaîne de provenances signées et l’historique d’écriture&nbsp;; pas un verdict V/X sur le fichier actuel</td>
+              <td>Oui, pour les écritures, signé (EdDSA)</td>
+              <td>Oui</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="frank">Là où d’autres sont en avance&nbsp;: des serveurs comme <a href="https://github.com/cyanheads/obsidian-mcp-server">obsidian-mcp-server</a> ou <a href="https://github.com/StevenStavrakis/obsidian-mcp">obsidian-mcp</a> offrent une surface d’édition et une adoption bien plus larges. <a href="https://github.com/The-40-Thieves/reliquary-tc">Reliquary-TC</a> publie déjà une provenance d’écriture chaînée et signée, avec contrôle d’accès&nbsp;; le témoin indépendant d’XVcache est encore à venir. XVcache journalise aussi les lectures et rend un verdict V/X sur le fichier actuel.</p>
     </section>
     <section id="livre-blanc">
       <h2>Livre blanc</h2>
