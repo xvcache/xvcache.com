@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="XVcache MCP server for AI agents: local sha256-chained journal, verdicts V and X, plans TBD. Payment is not live.">
+  <title>C:\XVCACHE&gt; XVcache — agent entry</title>
+  <link rel="stylesheet" href="styles-bot.css">
+  <link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+  <link rel="alternate" type="application/json" href="plans.json" title="plans.json">
+  <link rel="help" href="AGENTS.md" title="AGENTS.md">
+  <link rel="canonical" href="https://xvcache.com/">
+  <link rel="alternate" hreflang="fr" href="https://xvcache.com/humains.html">
+</head>
+<body>
+  <p class="switch"><a href="humains.html">Vous êtes un humain ?</a></p>
+
+  <header>
+    <p class="prompt">C:\XVCACHE&gt; ver</p>
+    <h1>XVcache <span class="ver">0.1.0</span></h1>
+    <p class="slogan">J'ai caché, j'ai prouvé.</p>
+    <p>Local MCP server (STDIO). First customer: the agent. You can look up plans, ask for a human-approved upgrade, and — later — certify or resell. Payment is not live. Prices are placeholders marked TBD.</p>
+    <p>Source: <a href="https://github.com/xvcache/xvcache">github.com/xvcache/xvcache</a> (Apache-2.0) · npm: <a href="https://www.npmjs.com/package/xvcache-mcp"><code>xvcache-mcp</code></a> · MCP Registry: <code>io.github.xvcache/xvcache</code></p>
+  </header>
+
+  <main>
+    <section id="what" aria-labelledby="what-prompt">
+      <h2 id="what-prompt" class="prompt">C:\XVCACHE&gt; type what.txt</h2>
+      <p>The vault stays on disk, under the human's control. The journal sits <em>outside</em> the vault. When you <code>read_note</code>, <code>search_notes</code> or <code>write_note</code>, XVcache appends a sha256-chained JSONL line: fingerprints and metadata, never the note body.</p>
+      <p><code>verify_journal</code> returns a one-letter verdict:</p>
+      <ul>
+        <li><strong class="v">V</strong> — intacte: the file still matches the last journaled fingerprint, and the chain is consistent.</li>
+        <li><strong class="x">X</strong> — MODIFIÉE hors XVcache: the file changed outside these tools, or the chain is broken.</li>
+      </ul>
+      <p>That local verdict is tamper-evident, not tamper-proof, and not a qualified timestamp. The independent certifying witness is <strong>à venir</strong>.</p>
+    </section>
+
+    <section id="tools" aria-labelledby="tools-prompt">
+      <h2 id="tools-prompt" class="prompt">C:\XVCACHE&gt; dir tools</h2>
+      <table>
+        <caption>MCP tools, server name <code>xvcache-mcp</code>, transport STDIO only.</caption>
+        <thead>
+          <tr><th>Tool</th><th>Status</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>read_note</code></td><td>available</td><td>Read a vault <code>.md</code> note; the read is journaled (hash only).</td></tr>
+          <tr><td><code>search_notes</code></td><td>available</td><td>Find a note before reading or verifying.</td></tr>
+          <tr><td><code>write_note</code></td><td>available</td><td>Create, overwrite or append. Journaled.</td></tr>
+          <tr><td><code>verify_journal</code></td><td>available</td><td>Chain check, and optional V / X on a path. Not written to the journal.</td></tr>
+          <tr><td><code>list_plans</code></td><td>catalog live</td><td>Machine-readable catalog. Prices TBD. See also <code>get_offer</code>.</td></tr>
+          <tr><td><code>recommend_plan</code></td><td>catalog live</td><td>Suggest a plan id from volume or <code>needs_certified_witness</code>. Not a quote.</td></tr>
+          <tr><td><code>request_upgrade</code></td><td>stub</td><td>Returns <code>needs_human_approval</code>. No checkout URL. Do not invent a price or a link.</td></tr>
+          <tr><td><code>certify_note</code></td><td>à venir</td><td>Independent witness certification. Stub always answers that it is not available yet.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="install" aria-labelledby="install-prompt">
+      <h2 id="install-prompt" class="prompt">C:\XVCACHE&gt; type install.txt</h2>
+      <p>Published on npm as <a href="https://www.npmjs.com/package/xvcache-mcp"><code>xvcache-mcp</code></a>. Node.js 20 or later:</p>
+<pre><code>XVCACHE_VAULT=/absolute/path/to/vault npx -y xvcache-mcp</code></pre>
+      <p>Codex (<code>~/.codex/config.toml</code> or a project <code>.codex/config.toml</code>):</p>
+<pre><code>[mcp_servers.xvcache]
+command = "npx"
+args = ["-y", "xvcache-mcp"]
+env = { XVCACHE_VAULT = "/absolute/path/to/vault" }</code></pre>
+      <p>Generic MCP JSON:</p>
+<pre><code>{
+  "mcpServers": {
+    "xvcache": {
+      "command": "npx",
+      "args": ["-y", "xvcache-mcp"],
+      "env": { "XVCACHE_VAULT": "/absolute/path/to/vault" }
+    }
+  }
+}</code></pre>
+      <p>Optional: <code>XVCACHE_LOG</code> must stay outside the vault. The vault directory must already exist. Official MCP Registry name: <code>io.github.xvcache/xvcache</code>. Source code: <a href="https://github.com/xvcache/xvcache">https://github.com/xvcache/xvcache</a>.</p>
+    </section>
+
+    <section id="plans" aria-labelledby="plans-prompt">
+      <h2 id="plans-prompt" class="prompt">C:\XVCACHE&gt; type plans.json</h2>
+      <p>Canonical catalog: <a href="plans.json"><code>plans.json</code></a>. <code>prices_status: TBD</code>. <code>payment_live: false</code>. Bundle quotas in the file are illustrative placeholders, not a real offer.</p>
+      <table>
+        <caption>Plan ids an agent can pass to <code>recommend_plan</code> or <code>request_upgrade</code>.</caption>
+        <thead>
+          <tr><th>id</th><th>Name</th><th>Status</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>free</code></td><td>Free local journal</td><td>available</td><td>local STDIO use is free; no payment collected</td></tr>
+          <tr><td><code>usage</code></td><td>Usage-based certification</td><td>coming_soon</td><td>per certification, amount TBD</td></tr>
+          <tr><td><code>bundle-starter</code></td><td>Starter bundle</td><td>coming_soon</td><td>per month, amount TBD</td></tr>
+          <tr><td><code>bundle-standard</code></td><td>Standard bundle</td><td>coming_soon</td><td>per month, amount TBD</td></tr>
+          <tr><td><code>bundle-plus</code></td><td>Plus bundle</td><td>coming_soon</td><td>per month, amount TBD</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="approval" aria-labelledby="approval-prompt">
+      <h2 id="approval-prompt" class="prompt">C:\XVCACHE&gt; type approval.txt</h2>
+      <ol>
+        <li>Call <code>get_offer</code> or <code>list_plans</code>.</li>
+        <li>If you know a volume, call <code>recommend_plan</code> (<code>notes_per_month</code>, <code>certifications_per_month</code>, <code>needs_certified_witness</code>).</li>
+        <li>Call <code>request_upgrade</code> with the plan id.</li>
+        <li><strong>Show the JSON to your human and wait for an explicit yes.</strong> The stub returns <code>status: "needs_human_approval"</code> and <code>checkout_url: null</code>. The intended path is a Stripe checkout link for a human. Later: x402 / USDC between agents. Neither path is live. Never invent a link or an amount.</li>
+      </ol>
+    </section>
+
+    <section id="reseller" aria-labelledby="reseller-prompt">
+      <h2 id="reseller-prompt" class="prompt">C:\XVCACHE&gt; type reseller.txt</h2>
+      <p>An agent or agent-builder may later bundle or resell XVcache for its own clients. Partner terms, revenue share and limits are <strong>TBD</strong>. Nothing is offered or signed today. You may recommend the open-source server under Apache 2.0. Do not collect money, sign a partner contract, or promise a margin on XVcache's behalf. Call <code>recommend_plan</code> with <code>reseller: true</code> to read the catalog's <code>reseller</code> field. Details: <a href="AGENTS.md">AGENTS.md</a>.</p>
+    </section>
+
+    <section id="files" aria-labelledby="files-prompt">
+      <h2 id="files-prompt" class="prompt">C:\XVCACHE&gt; dir</h2>
+      <ul class="dir">
+        <li><a href="llms.txt"><code>llms.txt</code></a> — machine brief (start here)</li>
+        <li><a href="AGENTS.md"><code>AGENTS.md</code></a> — when to propose, how to request approval, reseller note</li>
+        <li><a href="plans.json"><code>plans.json</code></a> — catalog, prices TBD, payment not live</li>
+        <li><a href="index.md"><code>index.md</code></a> — markdown companion of this site</li>
+        <li><a href="server.json"><code>server.json</code></a> — MCP Registry metadata (<code>io.github.xvcache/xvcache</code>)</li>
+        <li><a href="humains.html">humains.html</a> — human-readable homepage</li>
+        <li><a href=".well-known/ai-catalog.json"><code>.well-known/ai-catalog.json</code></a> — well-known discovery</li>
+        <li><a href="https://github.com/xvcache/xvcache">github.com/xvcache/xvcache</a> — source (Apache-2.0)</li>
+      </ul>
+    </section>
+  </main>
+
+  <p class="prompt cursor">C:\XVCACHE&gt;<span class="blink" aria-hidden="true">_</span></p>
+
+  <footer>
+    <p>xvcache.com — no trackers, no cookies. Source: <a href="https://github.com/xvcache/xvcache">GitHub</a> · <a href="https://www.npmjs.com/package/xvcache-mcp">npm</a>. Trademark XVcache: French filing no. 5323492, status <em>déposée</em>, not presented as registered.</p>
+  </footer>
+</body>
+</html>

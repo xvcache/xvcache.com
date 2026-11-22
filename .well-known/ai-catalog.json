@@ -1,0 +1,5 @@
+{
+  "specVersion": "1.0",
+  "entries": [],
+  "note": "XVcache is a local STDIO MCP server today. No remote Streamable HTTP endpoint is published, so no MCP Server Card is advertised. Official install metadata for the STDIO package (npm: xvcache-mcp, MCP Registry: io.github.xvcache/xvcache) is at /server.json, using the MCP Registry schema https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json. This file is the official well-known discovery path (/.well-known/ai-catalog.json) per the MCP Server Cards extension discovery document (draft): https://github.com/modelcontextprotocol/ext-server-card/blob/main/docs/discovery.md. If a remote endpoint ships, a Server Card would be added here and hosted at /server-card — not at /.well-known/mcp.json, which is not the official well-known URI."
+}

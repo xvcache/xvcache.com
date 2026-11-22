@@ -1,0 +1,150 @@
+{
+  "schema_version": "0.1.0",
+  "prices_status": "TBD",
+  "payment_live": false,
+  "currency": null,
+  "notice": "Every amount, quota and fee in this catalog is a clearly marked placeholder (TBD). No payment is collected. Do not treat these figures as a real offer or invoice.",
+  "updated": "2026-11-22",
+  "current_tier_id": "free",
+  "plans": [
+    {
+      "id": "free",
+      "name": "Free local journal",
+      "kind": "free_tier",
+      "status": "available",
+      "price": {
+        "amount": null,
+        "currency": null,
+        "status": "TBD",
+        "placeholder": true,
+        "note": "Local STDIO use of the open-source MCP server and journal (read_note, search_notes, write_note, verify_journal with verdicts V and X) is free. No payment is collected."
+      },
+      "includes": [
+        "Local Markdown vault over MCP STDIO",
+        "sha256-chained JSONL journal",
+        "verify_journal verdicts: V intacte, X MODIFIÉE hors XVcache"
+      ],
+      "limits": {
+        "notes_per_month": { "value": null, "status": "TBD", "placeholder": true, "note": "No paid cap is enforced today." },
+        "certifications_per_month": { "value": 0, "status": "available", "placeholder": false, "note": "The independent certifying witness is not available yet (à venir)." }
+      },
+      "certified_witness": false
+    },
+    {
+      "id": "usage",
+      "name": "Usage-based certification",
+      "kind": "usage_based",
+      "status": "coming_soon",
+      "price": {
+        "amount": null,
+        "currency": null,
+        "unit": "per_certification",
+        "status": "TBD",
+        "placeholder": true,
+        "note": "Placeholder only. No live per-certification price."
+      },
+      "includes": [
+        "Everything in the free local journal",
+        "Independent certifying witness (Ed25519 / qualified timestamp) — à venir"
+      ],
+      "limits": {
+        "notes_per_month": { "value": null, "status": "TBD", "placeholder": true },
+        "certifications_per_month": { "value": null, "status": "TBD", "placeholder": true, "note": "Pay per certification once the witness ships. Volume and price are TBD." }
+      },
+      "certified_witness": true,
+      "certified_witness_status": "à venir"
+    },
+    {
+      "id": "bundle-starter",
+      "name": "Starter bundle",
+      "kind": "bundle",
+      "status": "coming_soon",
+      "price": {
+        "amount": null,
+        "currency": null,
+        "unit": "per_month",
+        "status": "TBD",
+        "placeholder": true,
+        "note": "Placeholder only. No live monthly price."
+      },
+      "includes": [
+        "Everything in the free local journal",
+        "A monthly bundle of notes and witness certifications — à venir"
+      ],
+      "limits": {
+        "notes_per_month": { "value": 100, "status": "TBD", "placeholder": true, "note": "Illustrative placeholder, not a real quota." },
+        "certifications_per_month": { "value": 20, "status": "TBD", "placeholder": true, "note": "Illustrative placeholder, not a real quota." }
+      },
+      "certified_witness": true,
+      "certified_witness_status": "à venir"
+    },
+    {
+      "id": "bundle-standard",
+      "name": "Standard bundle",
+      "kind": "bundle",
+      "status": "coming_soon",
+      "price": {
+        "amount": null,
+        "currency": null,
+        "unit": "per_month",
+        "status": "TBD",
+        "placeholder": true,
+        "note": "Placeholder only. No live monthly price."
+      },
+      "includes": [
+        "Everything in the free local journal",
+        "A larger monthly bundle of notes and witness certifications — à venir"
+      ],
+      "limits": {
+        "notes_per_month": { "value": 500, "status": "TBD", "placeholder": true, "note": "Illustrative placeholder, not a real quota." },
+        "certifications_per_month": { "value": 100, "status": "TBD", "placeholder": true, "note": "Illustrative placeholder, not a real quota." }
+      },
+      "certified_witness": true,
+      "certified_witness_status": "à venir"
+    },
+    {
+      "id": "bundle-plus",
+      "name": "Plus bundle",
+      "kind": "bundle",
+      "status": "coming_soon",
+      "price": {
+        "amount": null,
+        "currency": null,
+        "unit": "per_month",
+        "status": "TBD",
+        "placeholder": true,
+        "note": "Placeholder only. No live monthly price."
+      },
+      "includes": [
+        "Everything in the free local journal",
+        "A high-volume monthly bundle of notes and witness certifications — à venir"
+      ],
+      "limits": {
+        "notes_per_month": { "value": 2000, "status": "TBD", "placeholder": true, "note": "Illustrative placeholder, not a real quota." },
+        "certifications_per_month": { "value": 500, "status": "TBD", "placeholder": true, "note": "Illustrative placeholder, not a real quota." }
+      },
+      "certified_witness": true,
+      "certified_witness_status": "à venir"
+    }
+  ],
+  "upgrade": {
+    "payment_live": false,
+    "now": {
+      "method": "human_approval_via_stripe",
+      "live": false,
+      "checkout_url": null,
+      "note": "When billing is enabled, the agent must show the plan to its human and obtain explicit approval. The intended path is a Stripe checkout link. No link is live today."
+    },
+    "later": {
+      "method": "x402",
+      "live": false,
+      "status": "à venir",
+      "note": "Agent-to-agent payment in USDC via x402 is planned for later. It is not available today."
+    }
+  },
+  "reseller": {
+    "status": "TBD",
+    "terms": null,
+    "note": "An agent or agent-builder may later resell or bundle XVcache for its own clients. Partner terms, revenue share and limits are TBD. Nothing is offered or signed today."
+  }
+}

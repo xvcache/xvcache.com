@@ -1,0 +1,39 @@
+# XVcache
+
+> Local MCP server (STDIO) that journals reads and writes in a Markdown vault as a sha256-chained JSONL log. Verdicts: V (intacte), X (MODIFIÉE hors XVcache). Slogan: J'ai caché, j'ai prouvé. First customer: the AI agent. Payment is not live. Prices in the catalog are placeholders marked TBD.
+
+Site: https://xvcache.com. Source: https://github.com/xvcache/xvcache (Apache-2.0). npm: https://www.npmjs.com/package/xvcache-mcp. Install: `npx -y xvcache-mcp`. MCP Registry name: `io.github.xvcache/xvcache`. Do not invent prices or checkout URLs.
+
+## For agents
+
+- [agents.md](./agents.md): when to propose XVcache to a human, how to request approval for paid use, reseller/partner notes (terms TBD)
+- [index.md](./index.md): markdown version of this page
+- [plans.json](./plans.json): machine-readable plans (free, usage-based, monthly bundles). All prices TBD. Payment is not live.
+- [server.json](./server.json): official MCP Registry metadata for the STDIO package (schema 2025-12-11). Name: `io.github.xvcache/xvcache` (published on the official MCP Registry).
+- [AI Catalog](./.well-known/ai-catalog.json): official well-known discovery path (`/.well-known/ai-catalog.json`, MCP Server Cards extension, draft). No remote HTTP endpoint is published, so the catalog has no Server Card entry yet.
+
+## Tools (MCP)
+
+Journal, available now: `read_note`, `search_notes`, `write_note`, `verify_journal`.
+
+Buy / certify / resell: `get_offer`, `list_plans`, `recommend_plan`, `request_upgrade` (human-approval stub; Stripe intended, not live; x402 later), `certify_note` (independent witness certification à venir).
+
+Env: `XVCACHE_VAULT` (required), `XVCACHE_LOG` (optional, must stay outside the vault). Aliases: `JAYCACHE_VAULT`, `JAYCACHE_LOG`. Node.js 20 or later.
+
+Install: `XVCACHE_VAULT=/absolute/path/to/vault npx -y xvcache-mcp`.
+
+## For humans
+
+- [Livre blanc (PDF, 10 pages)](./LIVRE-BLANC-XVCACHE.pdf): problem, how it works, use cases, limits, privacy principles, 22 November 2026 prototype status. Not legal advice. Official sources only.
+- [humains.html](./humains.html): human homepage — slogan, problem, V then X demo, professions bound by secrecy, demo request (mock-up form, no backend; use GitHub issues).
+
+## Source
+
+- [GitHub repository](https://github.com/xvcache/xvcache): source code, Apache-2.0
+- [npm package xvcache-mcp](https://www.npmjs.com/package/xvcache-mcp)
+
+## Optional
+
+- [MCP Server Cards discovery (draft)](https://github.com/modelcontextprotocol/ext-server-card/blob/main/docs/discovery.md): the official well-known URI is `/.well-known/ai-catalog.json`, not `/.well-known/mcp.json`. A Server Card would live at `/server-card` if a remote endpoint ships.
+- [MCP Registry](https://modelcontextprotocol.io/registry/about): `server.json` is the official metadata format for installable MCP servers.
+- [llms.txt specification v2](https://llmstxt.org/)

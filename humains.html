@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="XVcache : prouver ce qu’un agent a lu, cherché ou écrit, sans exposer le contenu. J’ai caché, j’ai prouvé.">
+  <title>XVcache — j’ai caché, j’ai prouvé</title>
+  <link rel="stylesheet" href="styles-humain.css">
+  <link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+  <link rel="canonical" href="https://xvcache.com/humains.html">
+  <link rel="alternate" hreflang="en" href="https://xvcache.com/">
+</head>
+<body>
+  <header class="wrap">
+    <div class="brand">
+      <p class="wordmark">XVcache</p>
+      <nav class="nav" aria-label="Sections">
+        <a href="#probleme">Le problème</a>
+        <a href="#fonctionnement">Fonctionnement</a>
+        <a href="#pour-qui">Pour qui</a>
+        <a href="#livre-blanc">Livre blanc</a>
+        <a href="#demo">Démo</a>
+        <a class="switch" href="index.html">Agent IA ?</a>
+      </nav>
+    </div>
+    <p class="motto">«&nbsp;J’ai caché, j’ai prouvé.&nbsp;»</p>
+    <h1 class="lead">Prouver ce qu’un agent a lu, cherché ou écrit — sans jamais montrer le contenu.</h1>
+    <p class="sublead">XVcache tient un journal d’empreintes, pas une copie des notes. Le coffre reste sous le contrôle du professionnel. Le verdict tient en une lettre&nbsp;: V, intacte&nbsp;; X, modifiée hors XVcache.</p>
+    <div class="verdicts" aria-label="Verdicts">
+      <span class="badge"><span class="glyph v" aria-hidden="true">V</span> intacte</span>
+      <span class="badge"><span class="glyph x" aria-hidden="true">X</span> modifiée hors XVcache</span>
+    </div>
+  </header>
+  <main class="wrap">
+    <section id="probleme">
+      <h2>Le problème</h2>
+      <p>Des agents d’intelligence artificielle lisent, cherchent et écrivent déjà dans des dossiers professionnels. Le jour où il faut dire ce qu’un agent a vu, et si le fichier a changé depuis, une simple affirmation ne suffit pas.</p>
+      <p>On ne peut pas, pour le prouver, livrer le dossier lui-même. La preuve doit porter sur ce qui s’est passé, pas sur le secret qu’elle protège.</p>
+    </section>
+    <section id="fonctionnement">
+      <h2>Comment ça fonctionne</h2>
+      <ol class="steps">
+        <li>Le coffre de notes reste sous le contrôle du professionnel.</li>
+        <li>Le journal, tenu hors du coffre, n’enregistre que des empreintes (SHA-256) et un résumé d’opération&nbsp;: quel outil, quel chemin, quand, quel client, avec quel résultat. Pas le texte des notes.</li>
+        <li>Chaque entrée est chaînée à la précédente. Si une ligne est réécrite, la chaîne se brise.</li>
+        <li>Une vérification compare l’empreinte actuelle à celle qui a été enregistrée. Le verdict tient en une lettre&nbsp;: <strong>V</strong>, la note est intacte&nbsp;; <strong>X</strong>, elle a été modifiée en dehors d’XVcache.</li>
+      </ol>
+      <div class="demo" aria-label="Démonstration des verdicts">
+        <p class="demo-label">Ce que montre une vérification</p>
+        <div class="demo-row">
+          <p class="demo-story">Une note est écrite par l’outil. On relance la vérification.</p>
+          <span class="badge"><span class="glyph v" aria-hidden="true">V</span> intacte</span>
+        </div>
+        <div class="demo-row">
+          <p class="demo-story">Le même fichier est modifié directement, hors de l’outil. On vérifie à nouveau.</p>
+          <span class="badge"><span class="glyph x" aria-hidden="true">X</span> modifiée hors XVcache</span>
+        </div>
+      </div>
+      <p>XVcache se présente comme un serveur MCP, pour que l’assistant habituel du professionnel puisse lire, chercher, écrire et demander une vérification. Un témoin indépendant, encore à l’état de prototype, peut plus tard signer une attestation sur les seules empreintes. Il ne voit pas le contenu. Cette certification indépendante est <strong>à venir</strong>.</p>
+    </section>
+    <section id="pour-qui">
+      <h2>Pour qui</h2>
+      <p>Pour les professionnels tenus au secret qui utilisent déjà un assistant d’intelligence artificielle, et qui doivent pouvoir rendre compte de ce que l’outil a touché — sans exposer le dossier.</p>
+      <ul class="points">
+        <li><strong>Avocats</strong> — en premier lieu. Le secret professionnel couvre les pièces du dossier, y compris sur support électronique.</li>
+        <li><strong>Notaires</strong> — tenus à un secret professionnel général et absolu, y compris pour les personnes placées sous leur autorité.</li>
+        <li><strong>Experts-comptables</strong> — tenus au secret professionnel dans les conditions prévues par leur statut.</li>
+        <li><strong>Médecins</strong> — le secret des informations de santé doit pouvoir être préservé, y compris lorsqu’une note de travail est vérifiée.</li>
+        <li><strong>Consultants</strong> liés par une confidentialité contractuelle — le même geste, sans confondre cette confidentialité avec le secret professionnel des professions réglementées.</li>
+      </ul>
+    </section>
+    <section id="livre-blanc">
+      <h2>Livre blanc</h2>
+      <p>Un livre blanc de dix pages détaille le problème, le fonctionnement, les cas d’usage, les limites, les principes de confidentialité, une feuille de route clairement indiquée comme spéculative, et l’état du prototype au 22 novembre 2026. Les éléments de droit cités renvoient à des sources officielles. Ce n’est pas un avis juridique.</p>
+      <p><a class="download" href="LIVRE-BLANC-XVCACHE.pdf">Télécharger le livre blanc (PDF, 10 pages)</a></p>
+    </section>
+    <section id="schema">
+      <h2>Un schéma ouvert, dès le premier jour</h2>
+      <p>Le format de preuve est conçu pour être public et gratuit. N’importe qui pourra vérifier une chaîne localement, hors ligne, sans envoyer ses notes et sans payer pour ce contrôle.</p>
+      <p>Le serveur et le format du journal sont publiés en source ouverte (licence Apache-2.0) sur <a href="https://github.com/xvcache/xvcache">GitHub</a>, et installables avec <code>npx -y xvcache-mcp</code> (<a href="https://www.npmjs.com/package/xvcache-mcp">paquet npm</a>). Les prix des offres payantes (témoin certificateur, forfaits) sont à définir. Aucun paiement n’est en service.</p>
+    </section>
+    <section id="demo">
+      <h2>Demander une démo</h2>
+      <p>La démo montre un verdict <strong>V</strong>, puis un verdict <strong>X</strong>, sur une note de test. Aucun dossier réel n’est utilisé. Aucun tarif n’est annoncé&nbsp;: rien n’est en vente à ce stade.</p>
+      <form id="demo-form" action="#demo" method="get">
+        <p class="form-note">Ce formulaire est une maquette. Il n’envoie rien vers un serveur, ne conserve rien, et n’est relié à aucun service. En attendant, vous pouvez demander une démo en ouvrant un message sur <a href="https://github.com/xvcache/xvcache/issues">GitHub</a>.</p>
+        <label>Nom
+          <input type="text" name="nom" autocomplete="off" placeholder="À titre indicatif">
+        </label>
+        <label>Profession
+          <input type="text" name="profession" autocomplete="off" placeholder="Avocat, notaire, autre…">
+        </label>
+        <label>Message
+          <textarea name="message" rows="4" placeholder="Aucun envoi n’est effectué."></textarea>
+        </label>
+        <button type="button">Demander une démo</button>
+      </form>
+    </section>
+    <p class="notice">Cette page ne contient ni témoignage, ni chiffre d’usage, ni offre commerciale. Rien n’est mis en vente à ce stade. XVcache n’est pas, à lui seul, un outil de conformité, ni un avis juridique, ni un horodatage électronique qualifié.</p>
+  </main>
+  <footer class="wrap">
+    <span>© 2026 XVcache. Marque française déposée (demande n°&nbsp;5323492), non présentée comme enregistrée.</span>
+    <span>Aucun traceur, aucun cookie. <a href="https://github.com/xvcache/xvcache">Code source</a> · <a href="index.html">Entrée agents</a>.</span>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.xvcache/xvcache",
+  "title": "XVcache",
+  "description": "Tamper-evident Markdown vault journal. Verdicts: V intact, X modified outside XVcache.",
+  "repository": {
+    "url": "https://github.com/xvcache/xvcache",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "xvcache-mcp",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "XVCACHE_VAULT",
+          "description": "Absolute path to the Markdown vault (directory of .md notes)",
+          "isRequired": true,
+          "isSecret": false,
+          "format": "string"
+        },
+        {
+          "name": "XVCACHE_LOG",
+          "description": "Optional path to the JSONL journal file; must stay outside the vault",
+          "isRequired": false,
+          "isSecret": false,
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}
